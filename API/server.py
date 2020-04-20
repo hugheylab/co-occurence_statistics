@@ -11,10 +11,10 @@ def index():
     params = bottle.request.query
     results = []
     query = "SELECT ingredient_id, ingrediend_name, general_exposure_count, general_exposure FROM public.general_exposures"
-    limit = params.limit
-    if limit == null | limit == undefined | limit == "":
-        limit = 50
-    if params.ids != null & params.ids != undefined & params.ids != '':
+    limit = 50
+    if hasattr(params, "limit") & params.limit != "":
+        limit = params.limit
+    if hasattr(params, "ids") & params.ids != '':
         ids = []
         ids = query.ids.split(",")
         for idx in ids:
