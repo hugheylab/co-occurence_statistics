@@ -12,9 +12,9 @@ def index():
     results = []
     query = "SELECT ingredient_id, ingrediend_name, general_exposure_count, general_exposure FROM public.general_exposures"
     limit = 50
-    if hasattr(params, "limit") & params.limit != "":
+    if hasattr(params, "limit") and params.limit != "":
         limit = params.limit
-    if hasattr(params, "ids") & params.ids != '':
+    if hasattr(params, "ids") and params.ids != '':
         ids = []
         ids = query.ids.split(",")
         for idx in ids:
