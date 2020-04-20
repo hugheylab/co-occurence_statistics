@@ -8,10 +8,22 @@ connection = db.Connection(config.db["host"], config.db["db"], config.db["user"]
 
 @bottle.get('/general_exposure')
 def index():
-    query = bottle.request.query
+    params = bottle.request.query
     results = []
-    genExps = connection.read("SELECT ingredient_id, ingredient_name, general_exposure_count, general_exposure FROM public.general_exposures limit 50;")
-    
+    query = "SELECT ingredient_id, ingrediend_name, general_exposure_count, general_exposure FROM public.general_exposures"
+    limit = params.limit
+    if limit == null || limit == undefined || limit == "":
+        limit = 50
+    if params.ids != null && params.ids != undefined && params.ids != '':
+        ids = []
+        ids = query.ids.split(",")
+        for idx in ids:
+            query = query + " ingredient_id = " + idx + " OR"
+
+        query[:-3]
+
+    query = query + " limit "+limit
+    genExps = connection.read(query)
     for ge in genExps:
         results.append(ge)
     return {
