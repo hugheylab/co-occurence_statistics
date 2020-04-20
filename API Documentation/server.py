@@ -8,6 +8,7 @@ connection = db.Connection(config.db["host"], config.db["db"], config.db["user"]
 
 @bottle.get('/general_exposure')
 def index():
+    query = bottle.request.query
     results = []
     genExps = connection.read("SELECT ingredient_id, ingredient_name, general_exposure_count, general_exposure FROM public.general_exposures limit 50;")
     
