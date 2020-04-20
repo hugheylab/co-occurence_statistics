@@ -12,9 +12,9 @@ def index():
     results = []
     query = "SELECT ingredient_id, ingrediend_name, general_exposure_count, general_exposure FROM public.general_exposures"
     limit = params.limit
-    if limit == null || limit == undefined || limit == "":
+    if limit == null | limit == undefined | limit == "":
         limit = 50
-    if params.ids != null && params.ids != undefined && params.ids != '':
+    if params.ids != null & params.ids != undefined & params.ids != '':
         ids = []
         ids = query.ids.split(",")
         for idx in ids:
