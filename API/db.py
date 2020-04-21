@@ -8,6 +8,7 @@ to the application's database and that's all.
 import time
 
 import psycopg2
+from psycopg2.extras import RealDictCursor
 
 import config
 
@@ -79,7 +80,7 @@ class Connection(object):
 
     results = []
     try:
-      with self.db.cursor() as cursor:
+      with self.db.cursor(cursor_factory=RealDictCursor) as cursor:
         if params is not None:
           cursor.execute(query, params)
         else:
