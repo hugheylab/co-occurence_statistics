@@ -27,7 +27,7 @@ def index():
         query = query[:-3]
 
     if hasattr(params, "name") and params.name != '':
-        if !isWhereAdded:
+        if not isWhereAdded:
             query = query + " WHERE "
         else:
             query = query + " AND "
