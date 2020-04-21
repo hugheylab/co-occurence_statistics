@@ -41,7 +41,24 @@ def index():
     return {
         "results": [r for r in results]
         }
-    
+@bottle.get('/phenotype_specific_exposures')
+def index():
+    params = bottle.request.query
+    results = []
+    query = "SELECT ingredient_id, ingredient_name, phecode, phecode_name, paired_count, phecode_cound, phenotype_specific_exposure, enrichment, medi_status FROM public.phenotype_specific_exposures"
+    limit = "50"
+    isWhereAdded = False
+
+
+
+    query = query + " limit "+limit
+    genExps = connection.read(query)
+    for ge in genExps:
+        results.append(ge)
+    return {
+        "results": [r for r in results]
+        }
+
 
 
 # ---- Errors
