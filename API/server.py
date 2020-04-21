@@ -11,7 +11,7 @@ def index():
     params = bottle.request.query
     results = []
     query = "SELECT ingredient_id, ingrediend_name, general_exposure_count, general_exposure FROM public.general_exposures"
-    limit = 50
+    limit = "50"
     if hasattr(params, "limit") and params.limit != "":
         limit = params.limit
     if hasattr(params, "ids") and params.ids != '':
