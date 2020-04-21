@@ -22,7 +22,7 @@ def index():
         for idx in ids:
             query = query + " ingredient_id = \"" + idx + "\" OR"
 
-        query[:-3]
+        query = query[:-3]
 
     query = query + " limit "+limit
     genExps = connection.read(query)
