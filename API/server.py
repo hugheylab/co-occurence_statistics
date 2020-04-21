@@ -19,7 +19,7 @@ def index():
         ids = []
         ids = idString.split(",")
         for idx in ids:
-            query = query + " ingredient_id = " + idx + " OR"
+            query = query + " ingredient_id = \"" + idx + "\" OR"
 
         query[:-3]
 
