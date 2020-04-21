@@ -31,7 +31,8 @@ def index():
             query = query + " WHERE "
         else:
             query = query + " AND "
-        query = query + "ingredient_name LIKE '%" + params.name + "%' "
+        nameQuery = params.name.lower()
+        query = query + " LOWER(ingredient_name) LIKE '%" + nameQuery + "%' "
         
     query = query + " limit "+limit
     genExps = connection.read(query)
