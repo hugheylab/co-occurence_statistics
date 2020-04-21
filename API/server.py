@@ -12,9 +12,11 @@ def index():
     results = []
     query = "SELECT ingredient_id, ingredient_name, general_exposure_count, general_exposure FROM public.general_exposures"
     limit = "50"
+    isWhereAdded = False
     if hasattr(params, "limit") and params.limit != "":
         limit = params.limit
     if hasattr(params, "ids") and params.ids != '':
+        isWhereAdded = True
         query = query + " WHERE "
         idString = params.ids
         ids = []
@@ -24,6 +26,13 @@ def index():
 
         query = query[:-3]
 
+    if hasattr(params, "name") and params.name != '':
+        if !isWhereAdded:
+            query = query + " WHERE "
+        else:
+            query = query + " AND "
+        query = query + "ingredient_name LIKE '%" + params.name + "%' "
+        
     query = query + " limit "+limit
     genExps = connection.read(query)
     for ge in genExps:
