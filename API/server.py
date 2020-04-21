@@ -15,6 +15,7 @@ def index():
     if hasattr(params, "limit") and params.limit != "":
         limit = params.limit
     if hasattr(params, "ids") and params.ids != '':
+        query = query + " WHERE "
         idString = params.ids
         ids = []
         ids = idString.split(",")
