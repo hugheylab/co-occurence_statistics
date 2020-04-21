@@ -64,9 +64,9 @@ def index():
         query = query[:-3]
         query = query + ")"
 
-     if hasattr(params, "ingredientIds") and params.ingredientIds != '':
+    if hasattr(params, "ingredientIds") and params.ingredientIds != '':
         isWhereAdded = True
-         if not isWhereAdded:
+        if not isWhereAdded:
             query = query + " WHERE ("
         else:
             query = query + " AND ("
