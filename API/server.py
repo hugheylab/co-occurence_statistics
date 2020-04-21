@@ -17,7 +17,7 @@ def index():
         limit = params.limit
     if hasattr(params, "ids") and params.ids != '':
         isWhereAdded = True
-        query = query + " WHERE "
+        query = query + " WHERE ("
         idString = params.ids
         ids = []
         ids = idString.split(",")
@@ -25,6 +25,7 @@ def index():
             query = query + " ingredient_id = '" + idx + "' OR"
 
         query = query[:-3]
+        query = query + ")"
 
     if hasattr(params, "name") and params.name != '':
         if not isWhereAdded:
@@ -48,8 +49,35 @@ def index():
     query = "SELECT ingredient_id, ingredient_name, phecode, phecode_name, paired_count, phecode_cound, phenotype_specific_exposure, enrichment, medi_status FROM public.phenotype_specific_exposures"
     limit = "50"
     isWhereAdded = False
+    if hasattr(params, "limit") and params.limit != "":
+        limit = params.limit
 
+    if hasattr(params, "phecodeIds") and params.phecodeIds != '':
+        isWhereAdded = True
+        query = query + " WHERE ("
+        phecodeIdString = params.phecodeIds
+        phecodeIds = []
+        phecodeIds = phecodeIdString.split(",")
+        for idx in phecodeIds:
+            query = query + " phecode = '" + idx + "' OR"
 
+        query = query[:-3]
+        query = query + ")"
+
+     if hasattr(params, "ingredientIds") and params.ingredientIds != '':
+        isWhereAdded = True
+         if not isWhereAdded:
+            query = query + " WHERE ("
+        else:
+            query = query + " AND ("
+        ingredientIdString = params.ingredientIds
+        ingredientIds = []
+        ingredientIds = ingredientIdString.split(",")
+        for idx in ingredientIds:
+            query = query + " ingredient_id = '" + idx + "' OR"
+
+        query = query[:-3]
+        query = query + ")"
 
     query = query + " limit "+limit
     genExps = connection.read(query)
