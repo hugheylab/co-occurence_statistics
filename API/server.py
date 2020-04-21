@@ -10,7 +10,7 @@ connection = db.Connection(config.db["host"], config.db["db"], config.db["user"]
 def index():
     params = bottle.request.query
     results = []
-    query = "SELECT ingredient_id, ingrediend_name, general_exposure_count, general_exposure FROM public.general_exposures"
+    query = "SELECT ingredient_id, ingredient_name, general_exposure_count, general_exposure FROM public.general_exposures"
     limit = "50"
     if hasattr(params, "limit") and params.limit != "":
         limit = params.limit
