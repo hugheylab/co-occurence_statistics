@@ -15,8 +15,9 @@ def index():
     if hasattr(params, "limit") and params.limit != "":
         limit = params.limit
     if hasattr(params, "ids") and params.ids != '':
+        idString = params.ids
         ids = []
-        ids = query.ids.split(",")
+        ids = idString.split(",")
         for idx in ids:
             query = query + " ingredient_id = " + idx + " OR"
 
