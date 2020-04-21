@@ -65,11 +65,11 @@ def index():
         query = query + ")"
 
     if hasattr(params, "ingredientIds") and params.ingredientIds != '':
-        isWhereAdded = True
         if not isWhereAdded:
             query = query + " WHERE ("
         else:
             query = query + " AND ("
+        isWhereAdded = True
         ingredientIdString = params.ingredientIds
         ingredientIds = []
         ingredientIds = ingredientIdString.split(",")
