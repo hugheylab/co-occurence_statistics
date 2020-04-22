@@ -45,7 +45,7 @@ def index():
     #Appends limit to query
     query = query + " ORDER BY ingredient_id ASC limit "+limit
     #Sends query to connection to database
-    genExps = connection.read(query) ORDER BY ingredient_id ASC 
+    genExps = connection.read(query)
     #Returns results, adds them to a list, then puts them in a JSON list
     for ge in genExps:
         results.append(ge)
