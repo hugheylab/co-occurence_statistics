@@ -45,7 +45,7 @@ def index():
     #Appends limit to query
     query = query + " ORDER BY ingredient_id ASC limit "+limit
     #Sends query to connection to database
-    genExps = connection.read(query)
+    genExps = connection.read(query) ORDER BY ingredient_id ASC 
     #Returns results, adds them to a list, then puts them in a JSON list
     for ge in genExps:
         results.append(ge)
@@ -71,7 +71,7 @@ def index():
     #Checks for a parameter of phecodeIds, a comma separated list of phecodes to query for
     if hasattr(params, "phecodeIds") and params.phecodeIds != '':
         isWhereAdded = True
-        query = query + " WHERE ("
+        query = query + " WHERE ("
         phecodeIdString = params.phecodeIds
         phecodeIds = []
         phecodeIds = phecodeIdString.split(",")
