@@ -61,3 +61,30 @@ This is an API to query against co-occurrence statistics for drug monitor data. 
       
       - `.../general_exposure?name=protein&limit=5`
       - This returns a list of the first 5 records where ingredient_name contains the string "protein" ignoring case.
+      
+`/phenotype_specific_exposures`
+
+- This endpoint queries against the "phenotype_specific_exposures" table.
+- A simple query against this endpoint will return the first 50 results in JSON representation.
+- Accepted Parameters:
+  - limit
+    - This is the max amount of records you want to be returned by the query.
+    - The default is limit=50
+    - Example
+      
+      - `.../phenotype_specific_exposures?limit=20`
+      - This returns a list limited to 20 records instead of the default of 50.
+  - phecodeIds
+    - This is a comma separated list of phecodes you wish to filter the list to return.
+    - Example
+      
+      - `.../phenotype_specific_exposures?phecodeIds=12345,54321,67890`
+      - This returns a list with the first 50 records where phecode is equal to 12345, 54321, or 67890.
+  - ingredientIds
+    - This is a comma separated list of ingredient Ids you wish to filter the list to return.
+    - Example
+      
+      - `.../phenotype_specific_exposures?ingredientIds=12345,54321,67890`
+      - This returns a list with the first 50 records where ingredient_id is equal to 12345, 54321, or 67890.
+
+*Note: All parameters that filter the list returned do so by combining them with AND statements. For example, if you query the phenotype_specific_exposures endpoint and specify both phecodeIds and ingredientIds, it will return a filtered list where both criteria are met.
