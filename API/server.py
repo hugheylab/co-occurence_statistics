@@ -43,7 +43,7 @@ def index():
         nameQuery = params.name.lower()
         query = query + " LOWER(ingredient_name) LIKE '%" + nameQuery + "%' "
     #Appends limit to query
-    query = query + " limit "+limit
+    query = query + " ORDER BY ingredient_id ASC limit "+limit
     #Sends query to connection to database
     genExps = connection.read(query)
     #Returns results, adds them to a list, then puts them in a JSON list
@@ -71,7 +71,7 @@ def index():
     #Checks for a parameter of phecodeIds, a comma separated list of phecodes to query for
     if hasattr(params, "phecodeIds") and params.phecodeIds != '':
         isWhereAdded = True
-        query = query + " WHERE ("
+        query = query + " WHERE ("
         phecodeIdString = params.phecodeIds
         phecodeIds = []
         phecodeIds = phecodeIdString.split(",")
@@ -96,7 +96,7 @@ def index():
         query = query[:-3]
         query = query + ")"
 
-    query = query + " limit "+limit
+    query = query + " ORDER BY phecode ASC, ingredient_id ASC  limit "+limit
     genExps = connection.read(query)
     for ge in genExps:
         results.append(ge)
