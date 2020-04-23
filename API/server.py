@@ -11,10 +11,17 @@ connection = db.Connection(config.db["host"], config.db["db"], config.db["user"]
 #Basic Authorization method
 def is_authenticated_user(user, password):
     
-    if user != "mrMiyagi" and password != "waxOn":
-        return False
-    else:
-        return True
+    query = "SELECT username, password, isActive FROM public.users WHERE username = '" +user+ "' AND password = '" +password+ "' AND isActive = True"
+    genExps = connection.read(query)
+    isAuth = False
+    for ge in genExps:
+        isAuth = True
+    return isAuth
+    
+    #if user != "mrMiyagi" and password != "waxOn":
+    #    return False
+    #else:
+    #    return True
 
 @route('/general_exposure')
 @auth_basic(is_authenticated_user)
