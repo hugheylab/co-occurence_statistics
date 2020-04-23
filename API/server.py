@@ -11,7 +11,7 @@ connection = db.Connection(config.db["host"], config.db["db"], config.db["user"]
 #Basic Authorization method
 def is_authenticated_user(user, password):
     
-    if user != "mrMiyagi" & password != "waxOn":
+    if user != "mrMiyagi" and password != "waxOn":
         return False
     else:
         return True
