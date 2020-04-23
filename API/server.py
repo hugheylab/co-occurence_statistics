@@ -10,10 +10,6 @@ connection = db.Connection(config.db["host"], config.db["db"], config.db["user"]
 
 #Basic Authorization method
 def is_authenticated_user(user, password):
-    params = bottle.request.query
-    if hasattr(params, "SecretKey") and params.SecretKey != '':
-        if params.SecretKey == "testKey":
-            return True
     query = "SELECT username, password, active FROM public.users WHERE username = '" +user+ "' AND password = '" +password+ "' AND active = True"
     genExps = connection.read(query)
     isAuth = False
