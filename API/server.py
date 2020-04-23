@@ -3,8 +3,21 @@ from json import dumps
 import bottle
 import db
 import config
+from bottle import auth_basic, request, route
+
 
 connection = db.Connection(config.db["host"], config.db["db"], config.db["user"], config.db["password"])
+
+#Basic Authorization method
+def is_authenticated_user(user, password):
+    
+    if user != "mrMiyagi" & password != "waxOn":
+        return False
+    else:
+        return True
+
+@route('/')
+@auth_basic(is_authenticated_user)
 
 #General Exposure Endpoint
 @bottle.get('/general_exposure')
