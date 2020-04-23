@@ -16,7 +16,7 @@ def is_authenticated_user(user, password):
     else:
         return True
 
-@route('/')
+@route('/general_exposure')
 @auth_basic(is_authenticated_user)
 
 #General Exposure Endpoint
