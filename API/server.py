@@ -19,6 +19,10 @@ def is_authenticated_user(user, password):
 @route('/general_exposure')
 @auth_basic(is_authenticated_user)
 
+@route('/phenotype_specific_exposures')
+@auth_basic(is_authenticated_user)
+
+
 #General Exposure Endpoint
 @bottle.get('/general_exposure')
 def index():
