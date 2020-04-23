@@ -19,8 +19,6 @@ def is_authenticated_user(user, password):
 @route('/general_exposure')
 @auth_basic(is_authenticated_user)
 
-@route('/phenotype_specific_exposures')
-@auth_basic(is_authenticated_user)
 
 
 #General Exposure Endpoint
@@ -69,6 +67,10 @@ def index():
     return {
         "results": [r for r in results]
         }
+
+
+@route('/phenotype_specific_exposures')
+@auth_basic(is_authenticated_user)
 
 #Phenotype Specific Exposures Endpoint
 @bottle.get('/phenotype_specific_exposures')
