@@ -16,8 +16,8 @@ LABEL maintainer="josh.schoenbachler@vumc.org"
 
 LABEL org.label-schema.version = "0.7.0"
 
-COPY API/requirements.txt /
-RUN pip install -r API/requirements.txt
+COPY requirements.txt /
+RUN pip install -r requirements.txt
 
 RUN apk add curl
 
