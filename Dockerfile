@@ -27,4 +27,4 @@ WORKDIR /app
 
 HEALTHCHECK --start-period=30s --interval=120s --timeout=15s CMD curl --fail http://localhost/general_exposure || exit 1
 
-CMD ["python", "server.py"]
+CMD ["python", "/python-rest/server.py"]
