@@ -124,6 +124,27 @@ def index():
         query = query[:-3]
         query = query + ")"
 
+    #Checks for a parameter of phecodeName, a regex case insensitice string to query against phecode_name for
+    if hasattr(params, "phecodeName") and params.phecodeName != '':
+        #If not isWhereAdded we just add an AND instead of WHERE
+        if not isWhereAdded:
+            query = query + " WHERE "
+        else:
+            query = query + " AND "
+        phecodeNameQuery = params.phecodeName.lower()
+        query = query + " LOWER(phecode_name) LIKE '%" + phecodeNameQuery + "%' "
+    #Checks for a parameter of phecodeName, a regex case insensitice string to query against phecode_name for
+    if hasattr(params, "ingredientName") and params.ingredientName != '':
+        #If not isWhereAdded we just add an AND instead of WHERE
+        if not isWhereAdded:
+            query = query + " WHERE "
+        else:
+            query = query + " AND "
+        ingredientNameQuery = params.ingredientName.lower()
+        query = query + " LOWER(ingredient_name) LIKE '%" + ingredientNameQuery + "%' "
+
+
+
     query = query + " ORDER BY phecode ASC, ingredient_id ASC"
     if limit != "none":
         query = query + " limit "+limit
