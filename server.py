@@ -37,7 +37,7 @@ def index():
     #Initializes query to build the string to query for
     query = "SELECT ingredient_id, ingredient_name, general_exposure_count, general_exposure FROM public.general_exposures"
     #Sets initial limit to the default of 50 results
-    limit = "50"
+    limit = "none"
     #Has a boolean variable to determine if a WHERE clause has been added yet. Is used to determine if in a query WHERE needs to be added or if AND needs to be added
     isWhereAdded = False
     #Checks for an attribute of limit to specify how many results to limit the query to
@@ -65,7 +65,9 @@ def index():
         nameQuery = params.name.lower()
         query = query + " LOWER(ingredient_name) LIKE '%" + nameQuery + "%' "
     #Appends limit to query
-    query = query + " ORDER BY ingredient_id ASC limit "+limit
+    query = query + " ORDER BY ingredient_id ASC"
+    if limit != "none":
+        query = query + " limit "+limit
     #Sends query to connection to database
     genExps = connection.read(query)
     #Returns results, adds them to a list, then puts them in a JSON list
@@ -122,7 +124,9 @@ def index():
         query = query[:-3]
         query = query + ")"
 
-    query = query + " ORDER BY phecode ASC, ingredient_id ASC  limit "+limit
+    query = query + " ORDER BY phecode ASC, ingredient_id ASC"
+    if limit != "none":
+        query = query + " limit "+limit
     genExps = connection.read(query)
     for ge in genExps:
         results.append(ge)
