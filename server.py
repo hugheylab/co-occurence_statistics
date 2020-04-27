@@ -131,6 +131,7 @@ def index():
             query = query + " WHERE "
         else:
             query = query + " AND "
+        isWhereAdded = True
         phecodeNameQuery = params.phecodeName.lower()
         query = query + " LOWER(phecode_name) LIKE '%" + phecodeNameQuery + "%' "
     #Checks for a parameter of phecodeName, a regex case insensitice string to query against phecode_name for
@@ -140,6 +141,7 @@ def index():
             query = query + " WHERE "
         else:
             query = query + " AND "
+        isWhereAdded = True
         ingredientNameQuery = params.ingredientName.lower()
         query = query + " LOWER(ingredient_name) LIKE '%" + ingredientNameQuery + "%' "
 
