@@ -90,7 +90,7 @@ def index():
     #Initializes query to build the string to query for
     query = "SELECT ingredient_id, ingredient_name, phecode, phecode_name, paired_count, phecode_cound, phenotype_specific_exposure, enrichment, medi_status FROM public.phenotype_specific_exposures"
     #Sets initial limit to the default of 50 results
-    limit = "50"
+    limit = "none"
     #Has a boolean variable to determine if a WHERE clause has been added yet. Is used to determine if in a query WHERE needs to be added or if AND needs to be added
     isWhereAdded = False
     #Checks for an attribute of limit to specify how many results to limit the query to
