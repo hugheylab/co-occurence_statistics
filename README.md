@@ -56,7 +56,7 @@ authenticate("user", "passwd")
     - Example
       
       - `.../general_exposure?limit=20`
-      - This returns a list limited to 20 records instead of the default of 50.
+      - This returns a list limited to 20 records instead of the default of no limit.
   - ids
     - This is a comma separated list of ingredient Ids you wish to return back.
     - Example
@@ -87,12 +87,24 @@ authenticate("user", "passwd")
     - Example
       
       - `.../phenotype_specific_exposures?phecodeIds=12345,54321,67890`
-      - This returns a list with the first 50 records where phecode is equal to 12345, 54321, or 67890.
+      - This returns a list with all records where phecode is equal to 12345, 54321, or 67890.
   - ingredientIds
     - This is a comma separated list of ingredient Ids you wish to filter the list to return.
     - Example
       
       - `.../phenotype_specific_exposures?ingredientIds=12345,54321,67890`
-      - This returns a list with the first 50 records where ingredient_id is equal to 12345, 54321, or 67890.
+      - This returns a list with all records where ingredient_id is equal to 12345, 54321, or 67890.
+  - phecodeName
+    - This is used as a case-insensitive search against the phecode_name column
+    - Example
+    
+        - `.../phenotype_specific_exposures?phecodeName=pro`
+        - This returns a list with all records where phecode_name contains the string "pro" ignoring case sensitivity.
+  - ingredientName
+    - This is used as a case-insensitive search against the ingredient_name column
+    - Example
+    
+        - `.../phenotype_specific_exposures?ingredientName=ace`
+        - This returns a list with all records where ingredient_name contains the string "ace" ignoring case sensitivity.
 
 *Note: All parameters that filter the list returned do so by combining them with AND statements. For example, if you query the phenotype_specific_exposures endpoint and specify both phecodeIds and ingredientIds, it will return a filtered list where both criteria are met.
