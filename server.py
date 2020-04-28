@@ -88,7 +88,7 @@ def index():
     params = bottle.request.query
     results = []
     #Initializes query to build the string to query for
-    query = "SELECT ingredient_id, ingredient_name, phecode, phecode_name, paired_count, phecode_cound, phenotype_specific_exposure, enrichment, medi_status FROM public.phenotype_specific_exposures"
+    query = "SELECT ingredient_id, ingredient_name, phecode, phecode_name, paired_count, phecode_count, phenotype_specific_exposure, enrichment, medi_status FROM public.phenotype_specific_exposures"
     #Sets initial limit to the default of 50 results
     limit = "none"
     #Has a boolean variable to determine if a WHERE clause has been added yet. Is used to determine if in a query WHERE needs to be added or if AND needs to be added
