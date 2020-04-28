@@ -19,7 +19,7 @@ This is an API to query against co-occurrence statistics for drug monitor data. 
   
   `git pull https://github.com/hugheylab/co-occurence_statistics`
   
-  `cd`
+    - From here you can run it using tmux in a separate container. You can use the following commands after setting up a tmux window:
   
   `sudo python3 python-rest/API/server.py`
 
@@ -35,6 +35,14 @@ This is an API to query against co-occurrence statistics for drug monitor data. 
 
 - Once the app is running, you can connect via going to the public IP address of the EC2 instance and adding "/<endpoint>" to your desired endpoint. The current IP address in use is http://18.220.193.105
 
+- Basic Authorization is enabled on this endpoint. If using curl or manually constructing the http request, you simply need to add a header with the value 'Authorization: Basic \<base64encode\>' where \<base64encode\> is 'username:password' (with your username and password instead of those words) encoded in base64. Alternatively, if you are using httr to construct the request, you can modify the following code to do basic authorization:
+
+`GET(
+"http://httpbin.org/basic-auth/user/passwd",
+authenticate("user", "passwd")
+)`
+
+
 ## Endpoints
 
 `/general_exposure`
@@ -44,7 +52,7 @@ This is an API to query against co-occurrence statistics for drug monitor data. 
 - Accepted Parameters:
   - limit
     - This is the max amount of records you want to be returned by the query.
-    - The default is limit=50
+    - The default is no limit
     - Example
       
       - `.../general_exposure?limit=20`
@@ -69,7 +77,7 @@ This is an API to query against co-occurrence statistics for drug monitor data. 
 - Accepted Parameters:
   - limit
     - This is the max amount of records you want to be returned by the query.
-    - The default is limit=50
+    - The default is no limit
     - Example
       
       - `.../phenotype_specific_exposures?limit=20`
